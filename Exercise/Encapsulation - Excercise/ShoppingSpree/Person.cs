@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ShoppingSpree
@@ -48,5 +49,25 @@ namespace ShoppingSpree
             }
         }
 
+        public string Add(Product product)
+        {
+            if (Money < product.Cost)
+            {
+                return $"{Name} can't afford {product.Name}";
+            }
+            bagOfProducts.Add(product);
+
+            Money -= product.Cost;
+            return $"{Name} bought {product.Name}";
+        }
+
+        public override string ToString()
+        {
+            string productsString = bagOfProducts.Any()
+                ? string.Join(", ", bagOfProducts)
+                : "Nothing bought";
+
+            return $"{Name} - {productsString}";
+        }
     }
 }
