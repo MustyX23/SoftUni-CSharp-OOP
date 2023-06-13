@@ -6,81 +6,83 @@ namespace PizzaCalories
 {
     public class Dough
     {
-        private const double BaseDoughCaloriesPerGram = 2;
-        private readonly Dictionary<string, double> flourTypesCalories;
-        private readonly Dictionary<string, double> bakingTechniquesCalories;
-
-        private string flourType;
+        private int weight;
+        private string type;
         private string bakingTechnique;
-        private double weight;
+        private double totalKCals;
 
-        public Dough(string flourType, string bakingTechnique, double weight)
+        public int Weight
         {
-            flourTypesCalories
-                = new Dictionary<string, double> { { "white", 1.5 }, { "wholegrain", 1.0 } };
-            bakingTechniquesCalories
-                = new Dictionary<string, double> { { "crispy", 0.9 }, { "chewy", 1.1 }, {"homemade", 1.0 } };
-
-            FlourType = flourType;
-            BakingTechnique = bakingTechnique;
-            Weight = weight;
+            get { return this.weight; }
+            set
+            {
+                if (value >= 1 && value <= 200)
+                {
+                    this.weight = value;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Dough weight should be in the range [1..200].");
+                }
+            }
         }
 
-        public string FlourType
+        public string Type
         {
-            get
+            get { return this.type; }
+            set
             {
-                return flourType;
-            }
-            private set
-            {
-                if (!flourTypesCalories.ContainsKey(value))
+                if (value.ToLower() == "white" || value.ToLower() == "wholegrain")
                 {
-                    throw new ArgumentException("Invalid type of dough.");
+                    this.type = value.ToLower();
                 }
-                flourType = value.ToLower();
+                else
+                {
+                    throw new InvalidOperationException("Invalid type of dough.");
+                }
             }
         }
-        public string BakingTechnique 
-        {
-            get 
-            { 
-                return bakingTechnique; 
-            }
-            private set
-            {
-                if (!bakingTechniquesCalories.ContainsKey(value))
-                {
-                    throw new ArgumentException("Invalid type of dough.");
-                }
-                bakingTechnique = value.ToLower();
-            }
-        }
-        public double Weight
-        {
-            get
-            {
-                return weight;
-            }
-            private set
-            {
-                //"Dough weight should be in the range [1..200]."
-                if (value < 1 || value > 200)
-                {
-                    throw new ArgumentException("Dough weight should be in the range [1..200].");
-                }
-                weight = value;
-            }
-        } 
-        public double Calories 
-        {
-            get
-            {
-                double flourTypeModifier = bakingTechniquesCalories[BakingTechnique];
-                double techniqueModifier = flourTypesCalories[FlourType];
 
-                return BaseDoughCaloriesPerGram * weight * flourTypeModifier * techniqueModifier;    
+        public string BakingTechnique
+        {
+            get { return this.bakingTechnique; }
+            set
+            {
+                if (value.ToLower() == "crispy" || value.ToLower() == "chewy" || value.ToLower() == "homemade")
+                {
+                    this.bakingTechnique = value.ToLower();
+                }
+                else
+                {
+                    throw new InvalidOperationException("Invalid type of dough.");
+                }
             }
+        }
+
+        public Dough()
+        {
+
+        }
+
+        public double CalculateKCals()
+        {
+            this.totalKCals = this.weight * 2;
+
+            if (this.type == "white")
+            {
+                this.totalKCals *= 1.5;
+            }
+
+            if (this.bakingTechnique == "crispy")
+            {
+                this.totalKCals *= 0.9;
+            }
+            else if (this.bakingTechnique == "chewy")
+            {
+                this.totalKCals *= 1.1;
+            }
+
+            return this.totalKCals;
         }
     }
 }
