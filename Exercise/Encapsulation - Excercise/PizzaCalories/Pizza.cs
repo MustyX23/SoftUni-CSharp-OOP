@@ -4,33 +4,65 @@ using System.Text;
 
 namespace PizzaCalories
 {
-    public class Pizza
+    class Pizza
     {
         private string name;
-        private string dough;
-        private string toppings;
-
-        public Pizza(string name, string dough, string toppings)
-        {
-            Name = name;
-            Dough = dough;
-            Toppings = toppings;
-        }
+        private Dough dough;
+        private List<Topping> toppings;
+        private double totalKCal;
 
         public string Name
         {
-            get => name;
-            private set => name = value;
+            get => this.name;
+            set
+            {
+                if (value != null && value.Length >= 1 && value.Length <= 15)
+                {
+                    this.name = value;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Pizza name should be between 1 and 15 symbols.");
+                }
+            }
         }
-        public string Dough
+
+        public Dough Dough
         {
-            get => dough;
-            set => dough = value;
+            set { this.dough = value; }
         }
-        public string Toppings
+
+        public Pizza()
         {
-            get => toppings;
-            set => toppings = value;
+            this.dough = new Dough();
+            this.toppings = new List<Topping>();
+        }
+
+        public void AddTopping(Topping topping)
+        {
+            this.toppings.Add(topping);
+        }
+
+        public int ToppingsCount()
+        {
+            return this.toppings.Count;
+        }
+
+        private double GetTotalKCal()
+        {
+            this.totalKCal += this.dough.CalculateKCals();
+
+            foreach (var topping in this.toppings)
+            {
+                this.totalKCal += topping.TotalCals();
+            }
+
+            return this.totalKCal;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.name} - {GetTotalKCal():f2} Calories.";
         }
     }
 }
