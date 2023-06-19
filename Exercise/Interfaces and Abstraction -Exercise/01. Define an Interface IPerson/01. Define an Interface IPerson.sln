@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Define an Interface IPerson", "01. Define an Interface IPerson.csproj", "{4DFDBDB8-0905-4414-B049-23D35A0C1ABF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Multiple Implementation", "..\02. Multiple Implementation\02. Multiple Implementation.csproj", "{DE8B3149-BF1B-4C85-8B78-B7FEE65EB3A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03. Telephony", "..\03. Telephony\03. Telephony.csproj", "{5BC8B7B0-1E80-44F3-B368-BCB4B23A4DA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Border Control", "..\04. Border Control\Border Control.csproj", "{D3C98011-BA6B-4B2A-9BCD-F154FF0FAF05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DFDBDB8-0905-4414-B049-23D35A0C1ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DFDBDB8-0905-4414-B049-23D35A0C1ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DFDBDB8-0905-4414-B049-23D35A0C1ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DFDBDB8-0905-4414-B049-23D35A0C1ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8B3149-BF1B-4C85-8B78-B7FEE65EB3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8B3149-BF1B-4C85-8B78-B7FEE65EB3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8B3149-BF1B-4C85-8B78-B7FEE65EB3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8B3149-BF1B-4C85-8B78-B7FEE65EB3A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BC8B7B0-1E80-44F3-B368-BCB4B23A4DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC8B7B0-1E80-44F3-B368-BCB4B23A4DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC8B7B0-1E80-44F3-B368-BCB4B23A4DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC8B7B0-1E80-44F3-B368-BCB4B23A4DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C98011-BA6B-4B2A-9BCD-F154FF0FAF05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C98011-BA6B-4B2A-9BCD-F154FF0FAF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C98011-BA6B-4B2A-9BCD-F154FF0FAF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C98011-BA6B-4B2A-9BCD-F154FF0FAF05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67464E84-2ED0-48D9-A395-0E093E13C4D8}
+	EndGlobalSection
+EndGlobal
