@@ -92,13 +92,13 @@ namespace FootballTeamGenerator
                 {
                     throw new ArgumentException($"Shooting should be between 0 and 100.");
                 }
-                passing = value;
+                shooting = value;
             }
         }
 
         public double OverallRating()
         {
-            double rating = (Endurance + Sprint + Dribble + Passing + Shooting / 5);
+            double rating = (Endurance + Sprint + Dribble + Passing + Shooting) / 5.0;
             return rating;
         }
 
