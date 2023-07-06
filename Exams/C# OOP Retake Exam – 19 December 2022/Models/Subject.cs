@@ -5,17 +5,22 @@ namespace UniversityCompetition.Models
 {
     public abstract class Subject : ISubject
     {
-        private int nextId = 1;
+        private int id;
         private string name;
+        private double subjectRate;
 
-        protected Subject(string name, double rate)
+        protected Subject(int id, string name, double subjectRate)
         {
-            Id = nextId++;
+            Id = id;
             Name = name;
-            Rate = rate;
+            Rate = subjectRate;
         }
 
-        public int Id { get; private set; }
+        public int Id 
+        {
+            get => id;
+            private set => id = value;
+        }
         public string Name
         {
             get { return name; }
@@ -28,7 +33,11 @@ namespace UniversityCompetition.Models
                 name = value;
             }
         }
-        public double Rate { get; private set; }
+        public double Rate 
+        {
+            get => subjectRate;
+            private set => subjectRate = value;
+        }
 
 
     }
