@@ -39,7 +39,7 @@ namespace DatabaseExtended.Tests
             Person[] people = CreateFullArray();
             _database = new Database(people);
 
-            Assert.Throws<InvalidOperationException>(() => _database.Add(new Person(1, "Kaloqn")));
+            Assert.Throws<InvalidOperationException>(() => _database.Add(new Person(17, "Kaloqn")));
         }
 
         private Person[] CreateFullArray()
@@ -58,15 +58,14 @@ namespace DatabaseExtended.Tests
             _database.Add(new Person(1, "Ivan"));       
             Person concretePerson = _database.FindByUsername("Ivan");
 
-            Assert.Throws<InvalidOperationException>(() => _database.Add(concretePerson) ,"Doesn't throw");
+            Assert.Throws<InvalidOperationException>(() => _database.Add(new Person(17, "Ivan")));
         }
         [Test]
         public void ThrowsIfAlreadyUsersWithGivenId()
         {
-            _database.Add(new Person(12, "Kroki"));
-            Person concretePerson = _database.FindById(12);
+            _database.Add(new Person(1, "Pesho"));
 
-            Assert.Throws<InvalidOperationException>(() => _database.Add(concretePerson), "Doesn't throw exception!");
+            Assert.Throws<InvalidOperationException>(() => _database.Add(new Person(1, "Gosho")));
 
         }
         [Test]
