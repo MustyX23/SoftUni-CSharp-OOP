@@ -84,13 +84,11 @@ namespace ChristmasPastryShop.Core
             booth.DelicacyMenu.AddModel(delicacy);
             return String.Format(OutputMessages.NewDelicacyAdded, delicacyTypeName, delicacyName);
         }
-
         public string BoothReport(int boothId)
         {
             IBooth booth = this.booths.Models.FirstOrDefault(b => b.BoothId == boothId);
             return booth.ToString().Trim();
         }
-
         public string LeaveBooth(int boothId)
         {
             IBooth booth = this.booths.Models.FirstOrDefault(b => b.BoothId == boothId);
@@ -105,7 +103,6 @@ namespace ChristmasPastryShop.Core
 
             return sb.ToString().TrimEnd();
         }
-
         public string ReserveBooth(int countOfPeople)
         {
             IBooth booth = this.booths.Models
@@ -198,7 +195,6 @@ namespace ChristmasPastryShop.Core
 
             return string.Empty;
         }
-
         private bool IsValidCocktailSize(string size)
         {
             return size == "Small" || size == "Middle" || size == "Large";
