@@ -166,11 +166,11 @@ namespace Formula1.Core
             race.TookPlace = true;
 
             StringBuilder result = new StringBuilder();
-            result.Append($"Pilot {sortedPilots[0].FullName} wins the {raceName} race.");
-            result.Append($"Pilot {sortedPilots[1].FullName} is second in the {raceName} race.");
-            result.Append($"Pilot {sortedPilots[2].FullName} is third in the {raceName} race.");
+            result.AppendLine($"Pilot {sortedPilots[0].FullName} wins the {raceName} race.");
+            result.AppendLine($"Pilot {sortedPilots[1].FullName} is second in the {raceName} race.");
+            result.AppendLine($"Pilot {sortedPilots[2].FullName} is third in the {raceName} race.");
 
-            return result.ToString();
+            return result.ToString().TrimEnd();
         }
 
     }
