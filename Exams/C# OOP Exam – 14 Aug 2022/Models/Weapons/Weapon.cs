@@ -7,8 +7,8 @@ namespace PlanetWars.Models.Weapons
 {
     public abstract class Weapon : IWeapon
     {
-        private double price;
         private int destructionLevel;
+        private double price;
 
         protected Weapon(int destructionLevel, double price)
         {
@@ -32,11 +32,7 @@ namespace PlanetWars.Models.Weapons
                 destructionLevel = value;
             }
         }
-        public double Price
-        {
-            get { return price; }
-            private set { price = value; }
-        }
+        public double Price { get;private set; }
 
     }
 }
