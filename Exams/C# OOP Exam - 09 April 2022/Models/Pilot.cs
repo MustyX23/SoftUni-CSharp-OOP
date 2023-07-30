@@ -25,7 +25,7 @@ namespace Formula1.Models
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 5)
                 {
-                    throw new ArgumentException(String.Format(ExceptionMessages.InvalidPilot, FullName));
+                    throw new ArgumentException(String.Format(ExceptionMessages.InvalidPilot, value));
                 }
                 fullName = value;
             }
