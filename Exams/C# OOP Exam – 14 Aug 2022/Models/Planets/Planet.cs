@@ -2,6 +2,7 @@
 using PlanetWars.Models.Planets.Contracts;
 using PlanetWars.Models.Weapons.Contracts;
 using PlanetWars.Repositories;
+using PlanetWars.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace PlanetWars.Models.Planets
 {
     public class Planet : IPlanet
     {
-        private UnitRepository units;
-        private WeaponRepository weapons;
+        private IRepository<IMilitaryUnit> units;
+        private IRepository<IWeapon> weapons;
 
         private string name;
         private double budget;
