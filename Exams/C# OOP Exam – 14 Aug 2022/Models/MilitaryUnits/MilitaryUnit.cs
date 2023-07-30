@@ -17,14 +17,7 @@ namespace PlanetWars.Models.MilitaryUnits
             EnduranceLevel = 1;
         }
 
-        public double Cost 
-        {
-            get
-            {
-                return cost;
-            }  
-            private set { cost = value; }
-        }
+        public double Cost { get; private set;  }
 
         public int EnduranceLevel
         {
