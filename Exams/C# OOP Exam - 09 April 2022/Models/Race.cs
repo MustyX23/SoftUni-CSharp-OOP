@@ -28,7 +28,7 @@ namespace Formula1.Models
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 5)
                 {
-                    throw new ArgumentException(String.Format(ExceptionMessages.InvalidRaceName, RaceName));
+                    throw new ArgumentException(String.Format(ExceptionMessages.InvalidRaceName, value));
                 }
                 raceName = value;
             }
@@ -40,7 +40,7 @@ namespace Formula1.Models
             {
                 if (value < 1)
                 {
-                    throw new ArgumentException(String.Format(ExceptionMessages.InvalidLapNumbers, NumberOfLaps));
+                    throw new ArgumentException(String.Format(ExceptionMessages.InvalidLapNumbers, value));
                 }
                 numberOfLaps = value;
             }
