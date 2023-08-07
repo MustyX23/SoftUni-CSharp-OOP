@@ -10,16 +10,14 @@ namespace PlanetWars.Repositories
 {
     public class UnitRepository : IRepository<IMilitaryUnit>
     {
-        private List<IMilitaryUnit> units;
+        private readonly HashSet<IMilitaryUnit> units;
 
         public UnitRepository()
         {
-            units = new List<IMilitaryUnit>();
+            units = new HashSet<IMilitaryUnit>();
         }
-        public IReadOnlyCollection<IMilitaryUnit> Models
-        {
-            get { return units; }
-        }
+        public IReadOnlyCollection<IMilitaryUnit> Models => units;
+
 
         public void AddItem(IMilitaryUnit model)
         {
