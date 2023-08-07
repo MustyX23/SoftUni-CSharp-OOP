@@ -9,11 +9,11 @@ namespace PlanetWars.Repositories
 {
     public class WeaponRepository : IRepository<IWeapon>
     {
-        private List<IWeapon> weapons;
+        private HashSet<IWeapon> weapons;
 
         public WeaponRepository()
         {
-            weapons = new List<IWeapon>();
+            weapons = new HashSet<IWeapon>();
         }
         public IReadOnlyCollection<IWeapon> Models => weapons;
 
