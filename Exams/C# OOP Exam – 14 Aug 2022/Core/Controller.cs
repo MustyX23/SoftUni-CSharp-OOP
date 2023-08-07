@@ -107,6 +107,8 @@ namespace PlanetWars.Core
                 return $"Planet {planet.Name} is already added!";
             }
 
+            planet = new Planet(name, budget);
+
             planets.AddItem(planet);
             return $"Successfully added Planet: {planet.Name}";
         }
