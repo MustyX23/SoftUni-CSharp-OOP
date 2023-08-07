@@ -57,11 +57,11 @@ namespace PlanetWars.Models.Planets
             get
             {
                 militaryPower = CalculateMilitaryPower();
-                return militaryPower;
+                return Math.Round(militaryPower, 3);
             }
             private set
             {
-                militaryPower = Math.Round(value, 3);
+                militaryPower = value;
             }
         }
 
