@@ -1,4 +1,5 @@
 ﻿using NavalVessels.Models.Contracts;
+using NavalVessels.Utilities.Messages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace NavalVessels.Models
         public Captain(string fullName)
         {
             FullName = fullName;
-            vessels = new List<IVessel>();
+            vessels = new HashSet<IVessel>();
         }
 
         public string FullName
@@ -23,7 +24,7 @@ namespace NavalVessels.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("Captain full name cannot be null or empty string.");
+                    throw new ArgumentNullException(ExceptionMessages.InvalidCaptainName);
                 }
                 fullName = value;
             }
