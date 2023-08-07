@@ -24,8 +24,7 @@ namespace PlanetWars.Repositories
 
         public IPlanet FindByName(string name)
         {
-            IPlanet planet = null;
-            return planet = planets.FirstOrDefault(p => p.Name == name);
+            return planets.FirstOrDefault(p => p.Name == name);
         }
 
         public bool RemoveItem(string name)
