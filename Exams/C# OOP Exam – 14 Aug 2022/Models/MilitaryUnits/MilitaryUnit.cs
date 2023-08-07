@@ -1,4 +1,5 @@
 ﻿using PlanetWars.Models.MilitaryUnits.Contracts;
+using PlanetWars.Utilities.Messages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,6 @@ namespace PlanetWars.Models.MilitaryUnits
     public abstract class MilitaryUnit : IMilitaryUnit
     {
 
-        private double cost;
         private int enduranceLevel;
 
         protected MilitaryUnit(double cost)
@@ -24,18 +24,19 @@ namespace PlanetWars.Models.MilitaryUnits
             get => enduranceLevel;
             private set
             {
+                if (value > 20)
+                {
+                    enduranceLevel = 20;
+
+                    throw new ArgumentException(ExceptionMessages.EnduranceLevelExceeded);
+                }
                 enduranceLevel = value;
             }
         }
 
         public void IncreaseEndurance()
         {
-            EnduranceLevel += 1;
-            if (EnduranceLevel > 20)
-            {
-                EnduranceLevel = 20;
-                throw new ArgumentException("Endurance level cannot exceed 20 power points.");
-            }
+            EnduranceLevel++;
         }
     }
 }
