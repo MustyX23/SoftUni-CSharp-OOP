@@ -13,12 +13,12 @@ namespace NavalVessels.Core
     public class Controller : IController
     {
         private IRepository<IVessel> vessels;
-        private List<ICaptain> captains;
+        private ICollection<ICaptain> captains;
 
         public Controller()
         {
             vessels = new VesselRepository();
-            captains = new List<ICaptain>();
+            captains = new HashSet<ICaptain>();
         }
 
         public string HireCaptain(string fullName)
@@ -151,7 +151,7 @@ namespace NavalVessels.Core
             attackingVessel.Captain.IncreaseCombatExperience();
             defendingVessel.Captain.IncreaseCombatExperience();
 
-            return $"Vessel {defendingVesselName} was attacked by vessel {attackingVesselName} - current armor thickness: {defendingVessel.ArmorThickness}.";
+            return $"Vessel {defendingVesselName} was attacked by vessel {attackingVesselName} - current armor thickness: {(int)Math.Round(defendingVessel.ArmorThickness)}.";
         }                      
     }
 }
