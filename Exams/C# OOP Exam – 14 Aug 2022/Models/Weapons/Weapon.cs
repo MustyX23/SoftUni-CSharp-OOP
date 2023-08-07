@@ -8,8 +8,6 @@ namespace PlanetWars.Models.Weapons
     public abstract class Weapon : IWeapon
     {
         private int destructionLevel;
-        private double price;
-
         protected Weapon(int destructionLevel, double price)
         {
             DestructionLevel = destructionLevel;
