@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.Linq;
+using EDriveRent.Utilities.Messages;
 
 namespace EDriveRent.Core
 {
@@ -27,13 +28,13 @@ namespace EDriveRent.Core
             IUser user = users.FindById(drivingLicenseNumber);
             if (user != null)
             {
-                return $"{drivingLicenseNumber} is already registered in our platform.";
+                return string.Format(OutputMessages.UserWithSameLicenseAlreadyAdded, drivingLicenseNumber);
             }
 
             user = new User(firstName, lastName, drivingLicenseNumber);
             users.AddModel(user);
 
-            return $"{firstName} {lastName} is registered successfully with DLN-{drivingLicenseNumber}";
+            return string.Format(OutputMessages.UserSuccessfullyAdded, firstName, lastName, drivingLicenseNumber);
         }
 
         public string UploadVehicle(string vehicleTypeName, string brand, string model, string licensePlateNumber)
@@ -41,14 +42,14 @@ namespace EDriveRent.Core
 
             if (vehicleTypeName != nameof(PassengerCar) && vehicleTypeName != nameof(CargoVan))
             {
-                return $"{vehicleTypeName} is not accessible in our platform.";
+                return string.Format(OutputMessages.VehicleTypeNotAccessible, vehicleTypeName);
             }
 
             IVehicle vehicle = vehicles.FindById(licensePlateNumber);
 
             if (vehicle != null)
             {
-                return $"{licensePlateNumber} belongs to another vehicle.";
+                return string.Format(OutputMessages.LicensePlateExists, licensePlateNumber);
             }
 
             if (vehicleTypeName == nameof(PassengerCar))
@@ -61,37 +62,37 @@ namespace EDriveRent.Core
             }
 
             vehicles.AddModel(vehicle);
-            return $"{brand} {model} is uploaded successfully with LPN-{licensePlateNumber}";
+            return string.Format(OutputMessages.VehicleAddedSuccessfully, brand, model, licensePlateNumber);
         }
 
         public string AllowRoute(string startPoint, string endPoint, double length)
         {
             // Find existing routes with the same start and end points
-            IRoute route = routes.GetAll().FirstOrDefault(r =>
+            IRoute existingRoute = routes.GetAll().FirstOrDefault(r =>
                 r.StartPoint == startPoint && r.EndPoint == endPoint);
 
-            if (route != null)
+            if (existingRoute != null)
             {
-                // If a route with the same start and end points exists, check if its length is greater than the given length
-                if (route.Length == length)
+                // If a existingRoute with the same start and end points exists, check if its length is greater than the given length
+                if (existingRoute.Length == length)
                 {
-                    return $"{startPoint}/{endPoint} - {length} km is already added in our platform.";
+                    return string.Format(OutputMessages.RouteExisting, startPoint, endPoint, length);
                 }
-                if (route.Length < length)
+                if (existingRoute.Length < length)
                 {
-                    // If the existing route is longer, lock the new route
-                    return $"{startPoint}/{endPoint} shorter route is already added in our platform.";
+                    // If the existing existingRoute is longer, lock the new existingRoute
+                    return string.Format(OutputMessages.RouteIsTooLong, startPoint, endPoint);
                 }
 
-                // If the new route is longer, lock the existing route
-                route.LockRoute();
+                // If the new existingRoute is longer, lock the existing existingRoute
+                existingRoute.LockRoute();
             }
 
-            // If no existing route found, create a new route
+            // If no existing existingRoute found, create a new existingRoute
             int routeId = routes.GetAll().Count + 1;
-            route = new Route(startPoint, endPoint, length, routeId);
-            routes.AddModel(route);
-            return $"{startPoint}/{endPoint} - {length} km is unlocked in our platform.";
+            IRoute newRoute = new Route(startPoint, endPoint, length, routeId);
+            routes.AddModel(newRoute);
+            return string.Format(OutputMessages.NewRouteAdded, startPoint, endPoint, length);
         }
         public string MakeTrip(string drivingLicenseNumber, string licensePlateNumber, string routeId, bool isAccidentHappened)
         {
@@ -102,17 +103,17 @@ namespace EDriveRent.Core
 
             if (user.IsBlocked)
             {
-                return $"User {drivingLicenseNumber} is blocked in the platform! Trip is not allowed.";
+                return string.Format(OutputMessages.UserBlocked, drivingLicenseNumber);
             }
 
             if (vehicle.IsDamaged)
             {
-                return $"Vehicle {licensePlateNumber} is damaged! Trip is not allowed.";
+                return string.Format(OutputMessages.VehicleDamaged, licensePlateNumber);
             }
 
             if (route.IsLocked)
             {
-                return $"Route {routeId} is locked! Trip is not allowed.";
+                return string.Format(OutputMessages.RouteLocked, routeId);
             }
 
             vehicle.Drive(route.Length);
@@ -147,7 +148,7 @@ namespace EDriveRent.Core
                 vehicle.Recharge();
             }
 
-            return $"{damagedVehicles.Count} vehicles are successfully repaired!";
+            return string.Format(OutputMessages.RepairedVehicles, vehiclesToRepairCount);
         }
 
         public string UsersReport()
