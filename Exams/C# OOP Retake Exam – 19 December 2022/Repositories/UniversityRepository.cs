@@ -9,26 +9,29 @@ namespace UniversityCompetition.Repositories
 {
     public class UniversityRepository : IRepository<IUniversity>
     {
-        private List<IUniversity> universities; 
-        public IReadOnlyCollection<IUniversity> Models => universities;
+        private List<IUniversity> universities;
 
         public UniversityRepository()
         {
-            this.universities = new List<IUniversity>();
+            universities = new List<IUniversity>();
         }
+        public IReadOnlyCollection<IUniversity> Models => universities;
+
         public void AddModel(IUniversity model)
         {
-            this.universities.Add(model);
+            universities.Add(model);
         }
 
         public IUniversity FindById(int id)
         {
-            return this.universities.FirstOrDefault(u => u.Id == id);
+            IUniversity university = null;
+            return university = universities.FirstOrDefault(u => u.Id == id);
         }
 
         public IUniversity FindByName(string name)
         {
-            return this.universities.FirstOrDefault(u => u.Name == name);
+            IUniversity university = null;
+            return university = universities.FirstOrDefault(u => u.Name == name);
         }
     }
 }
