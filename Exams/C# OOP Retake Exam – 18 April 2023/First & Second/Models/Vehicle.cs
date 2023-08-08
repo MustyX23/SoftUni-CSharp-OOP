@@ -67,18 +67,14 @@ namespace EDriveRent.Models
         public bool IsDamaged { get; private set; }
         public void Drive(double mileage)
         {
-            double percentage = mileage / MaxMileage * 100;
-            if (this is CargoVan)
-            {
-                percentage += 5;
-            }                
-            BatteryLevel -= (int)Math.Round(percentage);
+            double percentage = Math.Round((mileage / MaxMileage) * 100);
+            BatteryLevel -= (int)percentage;
 
-            if (BatteryLevel < 0)
+            if (this.GetType().Name == nameof(CargoVan))
             {
-                BatteryLevel = 0;
+                BatteryLevel -= 5;
             }
-                
+
         }
         public void Recharge()
         {
