@@ -11,27 +11,27 @@ namespace UniversityCompetition.Repositories
     {
         private List<ISubject> subjects;
 
-        public IReadOnlyCollection<ISubject> Models => subjects;
-        
-
         public SubjectRepository()
         {
             subjects = new List<ISubject>();
         }
+        public IReadOnlyCollection<ISubject> Models => subjects;
 
         public void AddModel(ISubject model)
         {
-            this.subjects.Add(model);
+            subjects.Add(model);
         }
 
         public ISubject FindById(int id)
         {
-            return this.subjects.FirstOrDefault(s => s.Id == id);
+            ISubject subject = null;
+            return subject = subjects.FirstOrDefault(s => s.Id == id);
         }
 
         public ISubject FindByName(string name)
         {
-            return this.subjects.FirstOrDefault(s => s.Name == name);
+            ISubject subject = null;
+            return subject = subjects.FirstOrDefault(s => s.Name == name);
         }
     }
 }
