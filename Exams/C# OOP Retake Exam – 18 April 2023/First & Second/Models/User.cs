@@ -73,20 +73,22 @@ namespace EDriveRent.Models
         public bool IsBlocked { get; private set; }
         public void IncreaseRating()
         {
-            Rating += 0.5;
-            if (Rating > 10)
+            if (Rating < 10)
             {
-                Rating = 10;
+                Rating += 0.5;
             }
         }
 
         public void DecreaseRating()
         {
-            Rating -= 2;
-            if (Rating < 0.0)
+            if (Rating < 2)
             {
-                Rating = 0.0;
+                Rating = 0;
                 IsBlocked = true;
+            }
+            else
+            {
+                Rating -= 2;
             }
         }
 
