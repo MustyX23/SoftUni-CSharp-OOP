@@ -1,44 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using UniversityCompetition.Models.Contracts;
 
 namespace UniversityCompetition.Models
 {
     public abstract class Subject : ISubject
     {
-        private int id;
-        private string name;
+        private int subjectId;
+        private string subjectName;
         private double subjectRate;
 
-        protected Subject(int id, string name, double subjectRate)
+        protected Subject(int subjectId, string subjectName, double subjectRate)
         {
-            Id = id;
-            Name = name;
+            Id = subjectId;
+            Name = subjectName;
             Rate = subjectRate;
         }
 
-        public int Id 
+        public int Id
         {
-            get => id;
-            private set => id = value;
+            get { return subjectId; }
+            private set { subjectId = value; }
         }
         public string Name
         {
-            get { return name; }
-            private set
+            get { return subjectName; }
+            private set 
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Name cannot be null or whitespace!");
                 }
-                name = value;
+                subjectName = value; 
             }
         }
         public double Rate 
         {
-            get => subjectRate;
-            private set => subjectRate = value;
+            get { return subjectRate; }
+            private set
+            {
+                subjectRate = value;
+            }
         }
-
-
     }
 }
