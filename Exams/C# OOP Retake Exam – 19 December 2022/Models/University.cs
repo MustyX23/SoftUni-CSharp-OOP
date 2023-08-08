@@ -3,84 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UniversityCompetition.Models.Contracts;
-using UniversityCompetition.Utilities.Messages;
 
 namespace UniversityCompetition.Models
 {
     public class University : IUniversity
     {
-        public University(int universityId, string universityName, string category, int capacity,
-ICollection<int> requiredSubjects
-)
+        private int universityId;
+        private string universityName;       
+        private string category;
+        private int capacity;
+        private List<int> requiredSubjects;
+
+        public University(int universityId, string name, string category, int capacity, List<int> requiredSubjects)
         {
             Id = universityId;
-            Name = universityName;
+            Name = name;
             Category = category;
             Capacity = capacity;
-            this.requiredSubjects = requiredSubjects.ToList();
+            this.requiredSubjects = requiredSubjects;
         }
 
-        private string[] allowedCategories = new string[] { "Technical", "Economical", "Humanity" };
-
-        private int id;
         public int Id
         {
-            get { return id; }
-            private set { id = value; }
+            get { return universityId; }
+            private set { universityId = value; }
         }
-
-        private string name;
-
         public string Name
         {
-            get { return name; }
-            private set
+            get { return universityName; }
+            private set 
             {
-                if (String.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(ExceptionMessages.NameNullOrWhitespace);
+                    throw new ArgumentException("Name cannot be null or whitespace!");
                 }
-
-                name = value;
+                universityName = value;
             }
         }
-
-
-        private string category;
-
         public string Category
         {
             get { return category; }
             private set
             {
-                if (allowedCategories.Contains(value))
+                if (value != "Technical" && value != "Economical" && value != "Humanity")
                 {
-                    category = value;
-                    return;
+                    throw new ArgumentException($"University category {value} is not allowed in the application!");
                 }
-
-                throw new ArgumentException(String.Format(ExceptionMessages.CategoryNotAllowed, value));
+                category = value;
             }
         }
-
-        private int capacity;
-
-        public int Capacity
-        {
+        public int Capacity 
+        { 
             get { return capacity; }
-            private set
+            private set 
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException(ExceptionMessages.CapacityNegative);
+                    throw new ArgumentException("University capacity cannot be a negative value!");
                 }
-
                 capacity = value;
             }
         }
-
-        private List<int> requiredSubjects;
-
-        public IReadOnlyCollection<int> RequiredSubjects { get { return requiredSubjects.AsReadOnly(); } }
+        public IReadOnlyCollection<int> RequiredSubjects => requiredSubjects;
     }
 }
