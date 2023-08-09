@@ -30,7 +30,7 @@ namespace BookingApp.Models.Hotels
             get { return fullName; }
             private set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Hotel name cannot be null or empty!");
                 }
