@@ -149,12 +149,14 @@ namespace BookingApp.Core
             var bookings = hotel.Bookings.All();
             if (!bookings.Any())
             {
+                sb.AppendLine();
                 sb.AppendLine("none");
             }
             else
             {
                 foreach (var booking in bookings)
                 {
+                    sb.AppendLine();
                     sb.AppendLine(booking.BookingSummary());
                 }
             }
