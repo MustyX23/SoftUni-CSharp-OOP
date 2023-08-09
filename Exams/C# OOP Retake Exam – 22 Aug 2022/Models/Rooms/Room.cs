@@ -1,4 +1,5 @@
 ﻿using BookingApp.Models.Rooms.Contracts;
+using BookingApp.Utilities.Messages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,7 +32,7 @@ namespace BookingApp.Models.Rooms
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Price cannot be negative!");
+                    throw new ArgumentException(ExceptionMessages.PricePerNightNegative);
                 }
                 pricePerNight = value; 
             }
