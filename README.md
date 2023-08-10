@@ -37,7 +37,5 @@ Explored the world of Object-Oriented Programming (OOP) principles, diving into 
 
 📝 Practiced OOP principles through engaging in challenging exams and exercises.
 
-💼 Presenting to Employers 💼
-
-Join me on this exciting journey as I continue to evolve and employ these invaluable skills, shaping innovative software solutions that transcend expectations!
-🚀 #OOPWizard 🧙‍♂️
+🚀 Join me on this exciting journey as I continue to evolve and employ these invaluable skills, shaping innovative software solutions that transcend expectations!
+#OOPWizard 🧙‍♂️
